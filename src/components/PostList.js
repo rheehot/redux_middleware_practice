@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-const PostList = ({posts}) => {
+function PostList({ posts }) {
   return (
     <ul>
       {posts.map(post => (
@@ -11,6 +11,6 @@ const PostList = ({posts}) => {
       ))}
     </ul>
   );
-};
+}
 
 export default PostList;

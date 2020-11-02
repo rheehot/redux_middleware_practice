@@ -1,26 +1,25 @@
 import React, { useEffect } from 'react';
-import Post from "../components/Post";
-import { useDispatch, useSelector } from "react-redux";
-import { getPost } from "../modules/posts";
+import { useDispatch, useSelector } from 'react-redux';
+import { getPost, goToHome } from '../modules/posts';
+import Post from '../components/Post';
+import { reducerUtils } from "../lib/asyncUtils";
 
-const PostContainer = ({ postId }) => {
-
-  const {data , loading , error} = useSelector(state => state.props.post);
+function PostContainer({postId}) {
+  const {data, loading, error} = useSelector(state => state.posts.post[postId] || reducerUtils.initial());
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getPost(postId));
-  },[postId, dispatch])
+  }, [dispatch, postId]);
 
-  if (loading) return <div>로딩중...</div>
-  if (error) return <div>에러 발생</div>
-  if (!data) return null
+  if (loading && !data) return <div>로딩중...</div>;
+  if (error) return <div>에러 발생!</div>;
+  if (!data) return null;
 
-  return (
-    <div>
-      <Post />
-    </div>
-  );
-};
+  return <>
+    <button onClick={() => dispatch(goToHome())}>홈으로 이동</button>
+    <Post post={data}/>
+  </>;
+}
 
 export default PostContainer;
