@@ -1,0 +1,19 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "리덕스",
+      "body": "미들웨어"
+    },
+    {
+      "id": 2,
+      "title": "thunk",
+      "body": "비동기 thunk"
+    },
+    {
+      "id": 3,
+      "title": "saga",
+      "body": "비동기 saga"
+    }
+  ]
+}
